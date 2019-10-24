@@ -82,7 +82,7 @@ namespace eosio {
 
       typedef std::unordered_multimap<transaction_id_type, sequenced_action> action_queue_t;
 
-      chain_plugin* chain_plug                                   = nullptr;
+      chain_plugin* chain_plug;
       fc::optional<boost::signals2::scoped_connection> accepted_block_connection;
       fc::optional<boost::signals2::scoped_connection> applied_transaction_connection;
       std::set<watcher_plugin_impl::filter_entry>      filter_on;
