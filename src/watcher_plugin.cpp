@@ -269,16 +269,17 @@ namespace eosio {
 
          my->chain_plug = app().find_plugin<chain_plugin>();
          auto& chain = my->chain_plug->chain();
-         my->accepted_block_conn.emplace(chain.accepted_block.connect(
-            [&](const block_state_ptr& b_state) {
+         
+         my->accepted_block_conn.emplace(
+            chain.accepted_block.connect([&](const block_state_ptr& b_state) {
                my->on_accepted_block(b_state);
             }));
 
-         my->applied_tx_conn.emplace(chain.applied_transaction.connect(
-            [&](const transaction_trace_ptr& tt) {
+         my->applied_tx_conn.emplace(
+            chain.applied_transaction.connect([&](const transaction_trace_ptr& tt) {
                my->on_applied_tx(tt);
-            }
-         ));
+            }));
+         
       } FC_LOG_AND_RETHROW()
    }
 
