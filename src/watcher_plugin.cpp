@@ -277,7 +277,7 @@ namespace eosio {
 
          my->applied_transaction_connection.emplace(
             chain.applied_transaction.connect([&](const transaction_trace_ptr& tt) {
-               my->on_applied_transaction(tt);
+               my->on_applied_tx(tt);
             }));
          
       } FC_LOG_AND_RETHROW()
