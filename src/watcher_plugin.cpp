@@ -276,8 +276,8 @@ namespace eosio {
             }));
 
          my->applied_transaction_connection.emplace(
-            chain.applied_transaction.connect([&](const transaction_trace_ptr& tt) {
-               my->on_applied_tx(tt);
+            chain.applied_transaction.connect([&](std::tuple<const transaction_trace_ptr&, const signed_transaction&> t) {
+               my->on_applied_tx(std::get<0>(t));
             }));
          
       } FC_LOG_AND_RETHROW()
